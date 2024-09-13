@@ -2,7 +2,7 @@
     .globl _bigSum
     .globl _bigSub
     .globl _bigMul
-
+ 
 _bigSum:
     clc
     movq 24(%rsi), %rax
