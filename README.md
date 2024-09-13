@@ -2,6 +2,8 @@
 
 Este repositório foi desenvolvido para otimizar cálculos com números inteiros positivos de 256 bits, utilizando Assembly para garantir alta eficiência em operações aritméticas. É projetado para ser usado com código em C.
 
+Desenvolvido para: x86_64
+
 ## Operações suportadas
 
 Atualmente, o repositório oferece suporte para as seguintes operações:
