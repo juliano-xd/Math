@@ -4,7 +4,7 @@ Este repositório contém um arquivo Assembly que define funções para realizar
 
 ## Arquivo Assembly
 
-O arquivo Assembly (`operations.asm`) inclui as seguintes funções:
+O arquivo Assembly (`math.asm`) inclui as seguintes funções:
 
 ### Funções
 
