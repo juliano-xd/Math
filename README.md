@@ -7,35 +7,65 @@ Desenvolvido para: x86_64
 ## Operações suportadas
 
 Atualmente, o repositório oferece suporte para as seguintes operações:
-* **Soma**      `_bigSum`: `A+=B`
-* **Subtração**      `_bigSub`: `A-=B`
-* **Multiplicação**      `_bigMul`: `A*=B`
+* **Soma**      `bigSum`: `A += B`
+* **Soma um**      `bigSumOne`: `A++`
+* **Subtração**      `bigSub`: `A -= B`
+* **Subtrai um**      `bigSubOne`:`A--`
+* **Multiplicação**      `bigMul`: `A *= B`
+* **Comparação de igualdade**      `bigEql`:`A == B`
+* **Comparação de diferença**      `bigDif`:`A != B`
+* **Comparação maior-que**      `bigGreater`:`A == B`
+* **Comparação menor-que**      `bigLess`:`A == B`
+
+## Metas para a proxima atualização
+* **Divisão**      `bigDiv`:`A /= B`
+* **Modulo**      será o valor de retorno de `bigDiv`
+* **ShiftLeft**      `bigShl`:`A = A << x` sendo `x` um valor de 0 a 256
+* **ShiftRight**      `bigShr`:`A = A >> x` sendo `x` um valor de 0 a 256
+* **Elevado ao quadrado**      `bigSqr`:`A = A²`
+* **Elevado ao cubo**      `bigCbe`:`A = A³`
 
 Essas funções manipulam dois números de 256 bits, representados como dois arrays de `unsigned long long int` com 4 elementos cada (`number[4]`). O overflow é tratado corretamente, e cada array é considerado como um único número de 256 bits.
 
 **Exemplo de uso**
 ```c
-
-extern void _bigSum(unsigned long long int *a, unsigned long long int *b);
-extern void _bigSub(unsigned long long int *a, unsigned long long int *b);
-extern void _bigMul(unsigned long long int *a, unsigned long long int *b);
+#include <math.h>
 
 int main() {
-    unsigned long long int numberA[] = {0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67897};
-    unsigned long long int numberB[] = {0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67897};
+    _uint256t numberA = {0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67897};
+    _uint256t numberB = {0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67890, 0xA1B2C3D4E5F67897};
 
     // Realiza a soma: numberA += numberB
-    _bigSum(numberA, numberB);
+    bigSum(numberA, numberB);
+
+    // Realiza a soma: numberA++
+    bigSumOne(numberA);
 
     // Realiza a subtração: numberA -= numberB
-    _bigSub(numberA, numberB);
+    bigSub(numberA, numberB);
+
+    // Realiza a subtração: numberA--
+    bigSubOne(numberA);    
 
     // Realiza a multiplicação: numberA *= numberB
-    _bigMul(numberA, numberB);
+    bigMul(numberA, numberB);
+
+    _Bool test;
+
+    // Realiza a comparação: numberA == numberB
+    test = bigEql(numberA, numberB);
+
+    // Realiza a comparação: numberA != numberB
+    test = bigDif(numberA, numberB);
+
+    // Realiza a comparação: numberA > numberB
+    test = bigGreater(numberA, numberB);
+
+    // Realiza a comparação: numberA < numberB
+    test = bigLess(numberA, numberB);
 
     return 0;
 }
-
 
 ```
 
@@ -51,16 +81,17 @@ As funções são implementadas em Assembly para maximizar a eficiência, operan
 ```shell
 git clone https://github.com/juliano-xd/Math.git
 cd Math
-as -O3 -o math.o math.asm  # compila o asm para um arquivo de objeto, que deverá ser linkado ao programa quando for usado! 
+sudo make install # realiza todo o processo de instalação
+```
+Apos instalado, para poder linkar o math ao seu projeto, basta incluir `-lmath` a linha de compilação do gcc, por exemplo:
+
+```shell
+gcc -o main main.c -lmath
 ```
 
-**Após compilado, para linkar o math.o**
-```shell
-gcc -o seu_programa_compilado seu_programa.c ~/Math/math.o  # irá linkar o math.o ja compilado a seu_programa.c e gerar o elf ´seu_programa_compilado´
-```
 **Para rodar**
 ```shell
-./seu_programa_compilado
+./main
 ```
 
 
