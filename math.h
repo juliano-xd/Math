@@ -10,7 +10,7 @@ void bigSumOne(_uint256t);
 void bigSub(_uint256t, _uint256t);
 
 // Realiza a subtração A--
-void bigSubOne(_uint256t, _uint256t);
+void bigSubOne(_uint256t);
 
 // Realiza a multiplicação A *= B
 void bigMul(_uint256t, _uint256t);
