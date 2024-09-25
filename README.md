@@ -14,8 +14,8 @@ Atualmente, o repositório oferece suporte para as seguintes operações:
 * **Multiplicação**      `bigMul`: `A *= B`
 * **Comparação de igualdade**      `bigEql`:`A == B`
 * **Comparação de diferença**      `bigDif`:`A != B`
-* **Comparação maior-que**      `bigGreater`:`A == B`
-* **Comparação menor-que**      `bigLess`:`A == B`
+* **Comparação maior-que**      `bigGreater`:`A > B`
+* **Comparação menor-que**      `bigLess`:`A < B`
 
 ## Metas para a proxima atualização
 * **Divisão**      `bigDiv`:`A /= B`
